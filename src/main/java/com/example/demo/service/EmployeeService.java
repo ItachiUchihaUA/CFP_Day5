@@ -7,6 +7,9 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.EmployeeDTO;
 import com.example.demo.entity.Employee;
+import com.example.demo.exceptions.CustomException;
+
+import lombok.Data;
 
 @Service
 public class EmployeeService {
@@ -14,7 +17,7 @@ public class EmployeeService {
 	private List<Employee> employeeList = new ArrayList<>();
 	
 	public Employee get(int id) {
-		return employeeList.get(id-1);
+		return employeeList.stream().filter(emp -> emp.getId() == id).findFirst().orElseThrow(() -> new CustomException("Employee Not Found!"));
 	}
 	
 	public List<Employee> getall(){

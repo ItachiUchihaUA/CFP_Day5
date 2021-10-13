@@ -1,42 +1,23 @@
 package com.example.demo.dto;
 
-public class EmployeeDTO {
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Pattern;
 
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
+
+@Data public class EmployeeDTO {
+
+	@Pattern(regexp = "^[A-Z][a-z]{2,}$", message= "Invalid Name!")
 	private String name;
+	@Min(value = 500, message="Min Value is 500")
 	private int salary;
 	
-	
-	
-	public EmployeeDTO() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-
 	public EmployeeDTO(String name, int salary) {
 		super();
 		this.name = name;
 		this.salary = salary;
-	}
-	
-	
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public int getSalary() {
-		return salary;
-	}
-	public void setSalary(int salary) {
-		this.salary = salary;
-	}
-
-	@Override
-	public String toString() {
-		return "EmployeeDTO [name=" + name + ", salary=" + salary + "]";
-	}
-	
-	
+	}	
 }

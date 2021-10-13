@@ -2,9 +2,12 @@ package com.example.demo.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,6 +29,11 @@ public class EmployeeController {
 	@Autowired
 	EmployeeService employeeServ;
 	
+	/**
+	 * will show EmployeeData with Given id;
+	 * @param id
+	 * @return ResponseEntity<ResponseDTO>
+	 */
 	@GetMapping("/{id}")
 	public ResponseEntity<ResponseDTO> getEmployeeData(@PathVariable int id) {
 		Employee emp = employeeServ.get(id);
@@ -33,7 +41,10 @@ public class EmployeeController {
 		return new ResponseEntity<ResponseDTO>(resposneDTO, HttpStatus.OK);
 	}
 
-	
+	/**
+	 * Will show complete List of Employee
+	 * @return ResponseEntity<ResponseDTO>
+	 */
 	@GetMapping("/")
 	public ResponseEntity<ResponseDTO> getAllEmployeeData() {
 		List<Employee> empList = employeeServ.getall();
@@ -41,19 +52,34 @@ public class EmployeeController {
 		return new ResponseEntity<ResponseDTO>(resposneDTO, HttpStatus.OK);
 	}
 	
+	/**
+	 * To add a EmployeeData to EmployeeList
+	 * will take JSON of EmployeeDTO from body.
+	 * @return ResponseEntity<ResponseDTO>
+	 */
 	@PostMapping(path="/add")
-	public ResponseEntity<ResponseDTO> post(@RequestBody EmployeeDTO employeeDTO) {
+	public ResponseEntity<ResponseDTO> post( @Valid @RequestBody EmployeeDTO employeeDTO) {
 		ResponseDTO resposneDTO = new ResponseDTO("Added successfully!", employeeServ.add(employeeDTO));
 		return new ResponseEntity<ResponseDTO>(resposneDTO, HttpStatus.OK);
 	}
-
-	
+ 
+	/**
+	 * To Delete a EmployeeData from EmployeeList
+	 * @param id
+	 * @return ResponseEntity<ResponseDTO>
+	 */
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<ResponseDTO> delete(@PathVariable int id) {
 		ResponseDTO resposneDTO = new ResponseDTO("Deleted!", employeeServ.delete(id));
 		return new ResponseEntity<ResponseDTO>(resposneDTO, HttpStatus.OK);
 	}	
 
+	/**
+	 * To update Employee with given id
+	 * @param id
+	 * @param employeeDTO
+	 * @return ResponseEntity<ResponseDTO>
+	 */
 	@PutMapping("/update/{id}")
 	public ResponseEntity<ResponseDTO> update(@PathVariable("id") int id ,@RequestBody EmployeeDTO employeeDTO) {
 		ResponseDTO resposneDTO = new ResponseDTO("Updated!", employeeServ.update(id, employeeDTO));

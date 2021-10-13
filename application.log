@@ -1,0 +1,6 @@
+2021-10-14 00:26:36.881  INFO 13176 --- [restartedMain] com.example.demo.EmpApplication          : Starting EmpApplication using Java 16.0.2 on DESKTOP-99BK1H6 with PID 13176 (C:\Users\TheUA\Documents\workspace-spring-tool-h2\EmployeeDTO\target\classes started by TheUA in C:\Users\TheUA\Documents\workspace-spring-tool-h2\EmployeeDTO)
+2021-10-14 00:26:36.890 DEBUG 13176 --- [restartedMain] com.example.demo.EmpApplication          : Running with Spring Boot v2.5.5, Spring v5.3.10
+2021-10-14 00:26:36.891  INFO 13176 --- [restartedMain] com.example.demo.EmpApplication          : No active profile set, falling back to default profiles: default
+2021-10-14 00:26:40.589  WARN 13176 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-10-14 00:26:41.265  INFO 13176 --- [restartedMain] com.example.demo.EmpApplication          : Started EmpApplication in 4.955 seconds (JVM running for 6.265)
+2021-10-14 00:26:41.270  INFO 13176 --- [restartedMain] com.example.demo.EmpApplication          : Employee Application started! in COMMON Environment
